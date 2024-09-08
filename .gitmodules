@@ -1,3 +1,6 @@
 [submodule "Libraries/safety"]
 	path = Libraries/safety
 	url = https://github.com/RealyUniqueName/Safety
+[submodule "Libraries/hxbit"]
+	path = Libraries/hxbit
+	url = https://github.com/HeapsIO/hxbit
