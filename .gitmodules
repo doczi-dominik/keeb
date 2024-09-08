@@ -1,0 +1,3 @@
+[submodule "Libraries/safety"]
+	path = Libraries/safety
+	url = https://github.com/RealyUniqueName/Safety
