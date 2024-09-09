@@ -1,5 +1,0 @@
-package keeb;
-
-class Keeb {
-    
-}
