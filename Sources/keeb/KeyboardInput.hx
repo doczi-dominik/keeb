@@ -1,19 +1,16 @@
 package keeb;
 
+import kha.System;
 import kha.input.KeyCode;
 import kha.input.Keyboard;
 
 using Safety;
 
 class KeyboardInput<ActionName: String = keeb.ActionName> extends Input<ActionName> {
-    final keyboard: Keyboard;
-
     final keysToActions: Map<KeyCode, Array<ActionName>>;
 
     public function new(config: InputConfig<ActionName>) {
         super(Keyboard, config);
-
-        keyboard = Keyboard.get();
 
         keysToActions = [];
 
@@ -34,8 +31,17 @@ class KeyboardInput<ActionName: String = keeb.ActionName> extends Input<ActionNa
                 }
             }
         }
- 
-        keyboard.notify(downListener, upListener);
+    }
+
+    function tryInitialize() {
+        final kb = Keyboard.get();
+
+        if (kb == null) {
+            return;
+        }
+
+        kb.notify(downListener, upListener);
+        initialized = true;
     }
 
     function downListener(key: KeyCode) {
@@ -66,7 +72,6 @@ class KeyboardInput<ActionName: String = keeb.ActionName> extends Input<ActionNa
         for (action in actions) {
             counters.remove(action);
         }
-        
         
     }
 }

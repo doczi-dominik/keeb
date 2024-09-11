@@ -3,8 +3,6 @@ package keeb;
 import kha.input.KeyCode;
 import hxbit.Serializable;
 
-import kha.input.Gamepad;
-
 // Disabled due to issues with Serializable
 // Null safety features still used in methods
 @:nullSafety(Off)

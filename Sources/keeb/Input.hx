@@ -7,6 +7,10 @@ abstract class Input<A: String = ActionName> {
 
     public static function update() {
         for (i in instances) {
+            if (!i.initialized) {
+                i.tryInitialize();
+            }
+            
             i.updateInstance();
         }
     }
@@ -15,6 +19,7 @@ abstract class Input<A: String = ActionName> {
     final actionToFilter: Map<A, Int -> Bool>;
 
     var anythingDownCounter: Int;
+    var initialized: Bool;
 
     public final kind: InputDeviceKind;
     public final config: InputConfig<A>;
@@ -30,6 +35,7 @@ abstract class Input<A: String = ActionName> {
         this.config = config;
 
         anythingDownCounter = 0;
+        initialized = false;
 
         actionToFilter = [];
 
@@ -60,6 +66,8 @@ abstract class Input<A: String = ActionName> {
 
         instances.push(this);
     }
+
+    abstract function tryInitialize(): Void;
 
     final function updateInstance() {
         for (action => value in counters) {
